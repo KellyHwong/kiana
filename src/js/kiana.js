@@ -9,39 +9,58 @@ $.fn.KianaInit = function (data) {
 
     //资源配置
     //图片
-    var kianaImg1 = "img/kiana-1.png";
-    var kianaImg2 = "img/kiana-2.png";
-    var kianaImg3 = "img/kiana-3.gif";
-    var kianaImg4 = "img/kiana-4.png";
+    //相对目录的问题
+    //被引用后变成了引用文件所在位置的相对目录
+    //大坑！结论：JS文件内的相对路径，也是从HTML文件所在位置开始计算的，跟js文件在哪无关。
+    var kianaImg1 = "../src/img/kiana-1.png";
+    var kianaImg2 = "../src/img/kiana-2.png";
+    var kianaImg3 = "../src/img/kiana-3.gif";
+    var kianaImg4 = "../src/img/kiana-4.png";
     //MP3
-    var dragMp3 = "mp3/kiana_drag.mp3";
-    var kiana_1Mp3 = "mp3/kiana_1.mp3";
-    var kiana_2Mp3 = "mp3/kiana_2.mp3";
-    var kiana_3Mp3 = "mp3/kiana_3.mp3";
-    var kiana_4Mp3 = "mp3/kiana_4.mp3";
-    var kiana_5Mp3 = "mp3/kiana_5.mp3";
-    var kiana_6Mp3 = "mp3/kiana_6.mp3";
-    var kiana_7Mp3 = "mp3/kiana_7.mp3";
-    var kiana_8Mp3 = "mp3/kiana_8.mp3";
-    var kiana_9Mp3 = "mp3/kiana_9.mp3";
-    var kiana_10Mp3 = "mp3/kiana_10.mp3";
-    var kiana_11Mp3 = "mp3/kiana_11.mp3";
+    var dragMp3 = "../src/mp3/kiana_drag.mp3";
+    var kiana_1Mp3 = "../src/mp3/kiana_1.mp3";
+    var kiana_2Mp3 = "../src/mp3/kiana_2.mp3";
+    var kiana_3Mp3 = "../src/mp3/kiana_3.mp3";
+    var kiana_4Mp3 = "../src/mp3/kiana_4.mp3";
+    var kiana_5Mp3 = "../src/mp3/kiana_5.mp3";
+    var kiana_6Mp3 = "../src/mp3/kiana_6.mp3";
+    var kiana_7Mp3 = "../src/mp3/kiana_7.mp3";
+    var kiana_8Mp3 = "../src/mp3/kiana_8.mp3";
+    var kiana_9Mp3 = "../src/mp3/kiana_9.mp3";
+    var kiana_10Mp3 = "../src/mp3/kiana_10.mp3";
+    var kiana_11Mp3 = "../src/mp3/kiana_11.mp3";
+    // var kianaImg1 = "../img/kiana-1.png";
+    // var kianaImg2 = "../img/kiana-2.png";
+    // var kianaImg3 = "../img/kiana-3.gif";
+    // var kianaImg4 = "../img/kiana-4.png";
+    // //MP3
+    // var dragMp3 = "../mp3/kiana_drag.mp3";
+    // var kiana_1Mp3 = "../mp3/kiana_1.mp3";
+    // var kiana_2Mp3 = "../mp3/kiana_2.mp3";
+    // var kiana_3Mp3 = "../mp3/kiana_3.mp3";
+    // var kiana_4Mp3 = "../mp3/kiana_4.mp3";
+    // var kiana_5Mp3 = "../mp3/kiana_5.mp3";
+    // var kiana_6Mp3 = "../mp3/kiana_6.mp3";
+    // var kiana_7Mp3 = "../mp3/kiana_7.mp3";
+    // var kiana_8Mp3 = "../mp3/kiana_8.mp3";
+    // var kiana_9Mp3 = "../mp3/kiana_9.mp3";
+    // var kiana_10Mp3 = "../mp3/kiana_10.mp3";
+    // var kiana_11Mp3 = "../mp3/kiana_11.mp3";
     //语言
-    var lan =
-        [
-            "呀~~",
-            "快看快看我抽到了什么",
-            "去死去死去死去死！！",
-            "主人,人家钱包都空了~",
-            "变态！",
-            "kiana,变身",
-            "哼,mihoyou什么的最讨厌了！！！",
-            "千万别小看我哟",
-            "要加油哦",
-            "我就知道主人最疼人家了",
-            "锵锵~",
-            "烦死啦走开走开啦！！！",
-        ];
+    var lan = [
+        "呀~~",
+        "快看快看我抽到了什么",
+        "去死去死去死去死！！",
+        "主人,人家钱包都空了~",
+        "变态！",
+        "kiana,变身",
+        "哼,mihoyou什么的最讨厌了！！！",
+        "千万别小看我哟",
+        "要加油哦",
+        "我就知道主人最疼人家了",
+        "锵锵~",
+        "烦死啦走开走开啦！！！",
+    ];
 
     //存语言和MP3的json对象,每个语言对应一个mp3
     var LanMp3 = {
@@ -70,6 +89,8 @@ $.fn.KianaInit = function (data) {
     $(".kianaImgDiv").append("<img id='kianaImg' />");
     //kianaImg 默认src=第一张
     $("#kianaImg").prop("src", kianaImg1);
+
+    console.log(kianaImg1)
 
     //创建mp3 div class="kianaMP3Div"
     $(".kiana").append("<div class='kianaMP3Div'></div>");
@@ -151,10 +172,10 @@ $.fn.dragging = function (data) {
     var $this = $(this);
     var xPage;
     var yPage;
-    var X;//
-    var Y;//
-    var xRand = 0;//
-    var yRand = 0;//
+    var X; //
+    var Y; //
+    var xRand = 0; //
+    var yRand = 0; //
     var father = $this.parent();
     var defaults = {
         move: 'both',
@@ -175,9 +196,16 @@ $.fn.dragging = function (data) {
 
 
 
-    father.css({ "position": "relative", "overflow": "hidden" });
-    $this.css({ "position": "absolute" });
-    hander.css({ "cursor": "move" });
+    father.css({
+        "position": "relative",
+        "overflow": "hidden"
+    });
+    $this.css({
+        "position": "absolute"
+    });
+    hander.css({
+        "cursor": "move"
+    });
 
     var faWidth = father.width();
     var faHeight = father.height();
@@ -193,10 +221,11 @@ $.fn.dragging = function (data) {
     if (random) {
         $thisRandom();
     }
+
     function $thisRandom() {
         $this.each(function (index) {
-            var randY = parseInt(Math.random() * (faHeight - thisHeight));///
-            var randX = parseInt(Math.random() * (faWidth - thisWidth));///
+            var randY = parseInt(Math.random() * (faHeight - thisHeight)); ///
+            var randX = parseInt(Math.random() * (faWidth - thisWidth)); ///
             if (movePosition.toLowerCase() == 'x') {
                 $(this).css({
                     left: randX
@@ -216,7 +245,9 @@ $.fn.dragging = function (data) {
 
     hander.mousedown(function (e) {
         //father.children().css({ "zIndex": "0" });
-        $this.css({ "zIndex": "999999" });
+        $this.css({
+            "zIndex": "999999"
+        });
         mDown = true;
         X = e.pageX;
         Y = e.pageY;
@@ -230,60 +261,83 @@ $.fn.dragging = function (data) {
     });
 
     $(document).mousemove(function (e) {
-        xPage = e.pageX;//--
+        xPage = e.pageX; //--
         moveX = positionX + xPage - X;
 
-        yPage = e.pageY;//--
+        yPage = e.pageY; //--
         moveY = positionY + yPage - Y;
 
         function thisXMove() {
             if (mDown == true) {
-                $this.css({ "left": moveX });
+                $this.css({
+                    "left": moveX
+                });
             } else {
                 return;
             }
             if (moveX < 0) {
-                $this.css({ "left": "0" });
+                $this.css({
+                    "left": "0"
+                });
             }
             if (moveX > (faWidth - thisWidth)) {
-                $this.css({ "left": faWidth - thisWidth });
+                $this.css({
+                    "left": faWidth - thisWidth
+                });
             }
             return moveX;
         }
 
         function thisYMove() {
             if (mDown == true) {
-                $this.css({ "top": moveY });
+                $this.css({
+                    "top": moveY
+                });
             } else {
                 return;
             }
             if (moveY < 0) {
-                $this.css({ "top": "0" });
+                $this.css({
+                    "top": "0"
+                });
             }
             if (moveY > (faHeight - thisHeight)) {
-                $this.css({ "top": faHeight - thisHeight });
+                $this.css({
+                    "top": faHeight - thisHeight
+                });
             }
             return moveY;
         }
 
         function thisAllMove() {
             if (mDown == true) {
-                $this.css({ "left": moveX, "top": moveY });
+                $this.css({
+                    "left": moveX,
+                    "top": moveY
+                });
             } else {
                 return;
             }
             if (moveX < 0) {
-                $this.css({ "left": "0" });
+                $this.css({
+                    "left": "0"
+                });
             }
             if (moveX > (faWidth - thisWidth)) {
-                $this.css({ "left": faWidth - thisWidth });
+                $this.css({
+                    "left": faWidth - thisWidth
+                });
             }
 
             if (moveY < 0) {
-                $this.css({ "top": "0" });
+                $this.css({
+                    "top": "0"
+                });
             }
             if (moveY > (faHeight - thisHeight)) {
-                $this.css({ "top": faHeight - thisHeight });
+                $this.css({
+                    "top": faHeight - thisHeight
+                });
             }
         }
         if (movePosition.toLowerCase() == "x") {
@@ -307,7 +361,7 @@ Mp3PlayAndShowMsg = function (mp3Src, kianaLanguage) {
     }
 };
 
-var oldNum;//用来保存上一次的num，用来和生成的num做比较，保证不重复
+var oldNum; //用来保存上一次的num，用来和生成的num做比较，保证不重复
 //随机从LanMp3抽取,返回一个包含mp3路径以及对应的话的对象
 GetLanMp3 = function (LanMp3, lan) {
     //产生一个随机数0-11

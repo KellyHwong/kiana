@@ -12,3 +12,6 @@
 </script>
 ```
 ##注意资源文件的路径
+
+# Issue
+dist 的 CDN 已经失效
