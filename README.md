@@ -11,7 +11,18 @@
     });
 </script>
 ```
-##注意资源文件的路径
+*注意资源文件的路径*
 
 # Issue
 dist 的 CDN 已经失效
+
+# npm
+npm i @kellyhwong/kiana
+然后在html里:
+```javascript
+<div id="div1"></div>
+<script>
+   require
+</script>
+```
+

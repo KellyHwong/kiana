@@ -1,0 +1,15 @@
+{
+  "key": "value",
+  "foo": {
+    "bar": "",
+    "count": "42"
+  },
+  "name": "@kellyhwong/kiana",
+  "version": "0.1.0",
+  "description": "kiana 挂件",
+  "main": "index.js",
+  "style": "style.css",
+  "files": [
+    "lib"
+  ]
+}
